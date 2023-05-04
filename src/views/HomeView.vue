@@ -4,8 +4,9 @@
 
     <div class="main-content">
       <HomeDescription />
-      <CalculateTool />
-      <CalculateTool />
+      <CalculateTool goldUnitText="黃金條塊" :UsdtRate="usdtRate" :goldBasePrice="bullionPrice" />
+      <CalculateTool goldUnitText="飾金" :UsdtRate="usdtRate" :goldBasePrice="goldPrice" />
+      <RemarkText />
     </div>
   </div>
 </template>
@@ -13,6 +14,7 @@
 <script>
 import CalculateTool from '@/components/CalculateTool.vue';
 import HomeDescription from '@/components/HomeDescription.vue';
+import RemarkText from '@/components/RemarkText.vue';
 
 export default {
   name: 'HomeView',
@@ -20,11 +22,14 @@ export default {
   components: {
     CalculateTool,
     HomeDescription,
+    RemarkText,
   },
 
   data() {
     return {
-      name: 'bbb',
+      goldPrice: 7000,
+      bullionPrice: 7250,
+      usdtRate: 31.1,
     };
   },
 
@@ -52,24 +57,9 @@ export default {
   background-color: #fff9f1;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1050px) {
   .main-content {
     padding: 15px 0px;
   }
 }
-
-// @media screen and (min-width: 1024px) {
-// }
-
-// @media screen and (min-width: 1200px) {
-// }
-
-// @media screen and (min-width: 768px) and (max-width: 979px) {
-// }
-
-// @media screen and (max-width: 767px) {
-// }
-
-// @media screen and (max-device-width: 480px) {
-// }
 </style>

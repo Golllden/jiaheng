@@ -1,14 +1,12 @@
 <template>
   <!-- 試算說明文字 -->
   <div class="calculate-discription">
-    <div class="discription-header">
-      <h2>線上試算說明</h2>
-    </div>
+    <div class="discription-header">線上試算說明</div>
     <div class="discription-text">
       <ul>
-        <li>• 實際兌換金額依現場實際檢驗後，現場實際秤重報價為主。</li>
-        <li>• 黃金回收價格每日更新，請依<span class="current-time">目前時間</span>為主，試算金額僅供當日參考。</li>
-        <span class="current-time">目前時間：2023/05/10 18:00 ....</span>
+        <li>•實際兌換金額依現場實際檢驗後，現場實際秤重報價為主。</li>
+        <li>•黃金回收價格每日更新，請依<span class="current-time">目前時間</span>為主，試算金額僅供當日參考。</li>
+        <li class="current-time">目前時間：2023/05/10 18:00 ....</li>
       </ul>
     </div>
   </div>
@@ -23,28 +21,27 @@ export default {
 <style lang="scss">
 .calculate-discription {
   text-align: center;
+  font-family: DFKai-sb;
 }
 
 .discription-header {
-  padding: 12px 0;
-  color: rgb(245, 245, 245);
+  padding: 5px 0;
+  font-size: 1.5rem;
   font-weight: bold;
-  font-size: 1.3rem;
-  letter-spacing: 3px;
+  color: white;
   background-color: #9e7d56;
 }
 
 .discription-text {
+  width: 100%;
   color: #8f6f4a;
   font-weight: bolder;
   font-size: 1.15rem;
   background-color: #f0e3d4;
-  padding: 30px 0;
 
   ul {
     list-style: none;
     margin: 0;
-    // padding: 20px;
   }
 
   li {
