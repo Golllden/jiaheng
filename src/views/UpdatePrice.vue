@@ -3,31 +3,63 @@
     <div class="input-wrap">
       <div class="update-col">
         <label for="goldPrice">條塊：</label>
-        <input id="goldPrice" type="number" />
+        <input id="goldPrice" type="number" v-model="newBullionPrice" />
       </div>
       <div class="update-col">
         <label for="bullionPrice">飾金：</label>
-        <input id="bullionPrice" type="number" />
+        <input id="bullionPrice" type="number" v-model="newGoldPrice" />
       </div>
       <div class="update-col">
         <label for="uRate">匯率：</label>
-        <input id="uRate" type="number" />
+        <input id="uRate" type="number" v-model="newUsdtRate" />
       </div>
       <div class="update-col">
         <label for="key">鑰匙：</label>
         <input id="key" type="number" />
       </div>
       <!-- submit -->
-      <button class="submit-btn">送出</button>
+      <button @click="submitUpdate" class="submit-btn">送出</button>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'updatePrice',
   data() {
-    return {};
+    return {
+      newBullionPrice: '',
+      newGoldPrice: '',
+      newUsdtRate: '',
+    };
+  },
+
+  methods: {
+    submitUpdate() {
+      alert('update !');
+      this.setNewPrice();
+    },
+
+    // call API修改
+    setNewPrice: function () {
+      let revisePriceApi = 'http://13.212.61.53:3000/api/price/priceset';
+
+      axios
+        .post(revisePriceApi, {
+          usprice: this.newUsdtRate,
+          goldprice: this.newGoldPrice,
+          // bullionprice: this.newBullionPrice,
+        })
+        .then((response) => {
+          console.log(response);
+          alert('OK');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="remark-wrap">
-    <h5>備註:</h5>
+    <h5>備註 <router-link to="/UpdatePrice">:</router-link></h5>
     <ul>
       <li v-for="text in remarkTextList">
         {{ text }}
@@ -42,6 +42,12 @@ export default {
 
   li {
     padding: 6px 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: none;
+    cursor: none;
   }
 }
 </style>

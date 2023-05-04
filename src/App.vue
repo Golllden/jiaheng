@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <nav>
+    <!-- <nav>
       <router-link to="/">試算</router-link> |
       <router-link to="/UpdatePrice"> Revise </router-link>
-    </nav>
+    </nav> -->
     <router-view />
   </div>
 </template>
@@ -19,6 +19,10 @@
   font-size: 100%;
   font-family: inherit;
   vertical-align: baseline;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 nav {

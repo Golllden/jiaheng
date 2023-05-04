@@ -16,6 +16,8 @@ import CalculateTool from '@/components/CalculateTool.vue';
 import HomeDescription from '@/components/HomeDescription.vue';
 import RemarkText from '@/components/RemarkText.vue';
 
+import axios from 'axios';
+
 export default {
   name: 'HomeView',
 
@@ -27,16 +29,37 @@ export default {
 
   data() {
     return {
-      goldPrice: 7000,
-      bullionPrice: 7250,
-      usdtRate: 31.1,
+      goldPrice: 0,
+      bullionPrice: 7250, //
+      usdtRate: 0,
     };
   },
 
   methods: {
-    test() {
-      console.log('hell world');
+    // 取得USDT匯率
+    getUsdtRate: function () {
+      let UsdApi = 'http://13.212.61.53:3000/api/price/usprice';
+
+      axios
+        .get(UsdApi)
+        .then((response) => (this.usdtRate = response.data.usprice[0].usprice))
+        .catch((error) => console.log(error));
     },
+
+    // 取得飾金一錢多少
+    getGoldPrice: function () {
+      let golaAip = 'http://13.212.61.53:3000/api/price/goldprice';
+
+      axios
+        .get(golaAip)
+        .then((response) => (this.goldPrice = response.data.goldprice[0].goldprice))
+        .catch((error) => console.log(error));
+    },
+  },
+
+  created() {
+    this.getUsdtRate();
+    this.getGoldPrice();
   },
 };
 </script>

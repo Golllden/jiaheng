@@ -163,10 +163,15 @@ select {
   border: none;
   font-size: 0.85rem;
   padding: 6px 35px;
-  background-color: rgb(236, 60, 60);
+  background-color: rgb(230, 60, 60);
   border-radius: 5px;
   color: rgb(240, 240, 240);
   margin-left: 20px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(200, 20, 20);
+  }
 }
 
 @media screen and (max-width: 550px) {
