@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       goldPrice: 0,
-      bullionPrice: 7250, //
+      bullionPrice: 7350, //
       usdtRate: 0,
     };
   },

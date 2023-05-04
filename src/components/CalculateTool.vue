@@ -81,8 +81,14 @@ export default {
   methods: {
     // 計算
     submitToCalculate: function () {
+      if (this.inputWeight == 0 || this.inputWeight == '') {
+        return;
+      }
+
       this.calculatedAmount = this.displayPublicPriceByChoosenUnit * this.inputWeight;
       this.calculatedUsdt = (this.calculatedAmount / this.UsdtRate).toFixed(2);
+
+      alert('完成');
     },
   },
 };
