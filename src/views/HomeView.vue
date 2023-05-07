@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       goldPrice: 0,
-      bullionPrice: 7350, //
+      bullionPrice: 0, //
       usdtRate: 0,
     };
   },
@@ -55,11 +55,21 @@ export default {
         .then((response) => (this.goldPrice = response.data.goldprice[0].goldprice))
         .catch((error) => console.log(error));
     },
+    // 取得條塊
+    getGoldPriceB: function () {
+      let golaAip = 'http://13.212.61.53:3000/api/price/goldpriceB';
+
+      axios
+        .get(golaAip)
+        .then((response) => (this.bullionPrice = response.data.goldpriceB[0].goldpriceB))
+        .catch((error) => console.log(error));
+    },
   },
 
   created() {
     this.getUsdtRate();
     this.getGoldPrice();
+    this.getGoldPriceB();
   },
 };
 </script>

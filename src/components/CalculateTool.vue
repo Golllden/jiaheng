@@ -136,7 +136,7 @@ export default {
   color: #9e7d56;
   border: 1px solid #9e7d56;
   text-align: center;
-  font-size: 1.15rem;
+  font-size: 0.8rem;
 }
 
 .usdt-rate {

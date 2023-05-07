@@ -1,13 +1,14 @@
 <template>
   <div class="calculate-tool">
     <div class="input-wrap">
+      <router-link class="home-btn" to="/">返回</router-link>
       <div class="update-col">
-        <label for="goldPrice">條塊：</label>
-        <input id="goldPrice" type="number" v-model="newBullionPrice" />
+        <label for="bullionPrice">條塊：</label>
+        <input id="bullionPrice" type="number" v-model="newBullionPrice" />
       </div>
       <div class="update-col">
-        <label for="bullionPrice">飾金：</label>
-        <input id="bullionPrice" type="number" v-model="newGoldPrice" />
+        <label for="goldPrice">飾金：</label>
+        <input id="goldPrice" type="number" v-model="newGoldPrice" />
       </div>
       <div class="update-col">
         <label for="uRate">匯率：</label>
@@ -15,7 +16,7 @@
       </div>
       <div class="update-col">
         <label for="key">鑰匙：</label>
-        <input id="key" type="number" />
+        <input id="key" type="number" v-model="key" />
       </div>
       <!-- submit -->
       <button @click="submitUpdate" class="submit-btn">送出</button>
@@ -33,12 +34,30 @@ export default {
       newBullionPrice: '',
       newGoldPrice: '',
       newUsdtRate: '',
+      key: '',
     };
   },
 
   methods: {
     submitUpdate() {
-      alert('update !');
+      if (this.newUsdtRate <= 0 || !this.newUsdtRate) {
+        alert('操作有誤');
+        return;
+      }
+      if (this.newGoldPrice <= 0 || !this.newGoldPrice) {
+        alert('操作有誤');
+        return;
+      }
+      if (this.newBullionPrice <= 0 || !this.newBullionPrice) {
+        alert('操作有誤');
+        return;
+      }
+
+      if (this.key != '0897') {
+        alert('操作有誤');
+        return;
+      }
+
       this.setNewPrice();
     },
 
@@ -50,11 +69,11 @@ export default {
         .post(revisePriceApi, {
           usprice: this.newUsdtRate,
           goldprice: this.newGoldPrice,
-          // bullionprice: this.newBullionPrice,
+          goldpriceB: this.newBullionPrice,
         })
         .then((response) => {
-          console.log(response);
           alert('OK');
+          this.$router.push({ path: '/' });
         })
         .catch((error) => {
           console.log(error);
@@ -68,13 +87,16 @@ export default {
 .calculate-tool {
   width: 100vw;
   height: 95vh;
-  background-color: #9e7d56;
+
+  // background-color: #9e7d56;
+  background: linear-gradient(to right, rgb(255, 255, 255), #9e7d56);
   position: relative;
 }
 
 .input-wrap {
+  box-sizing: border-box;
   border-radius: 5px;
-  padding: 20px;
+  padding: 10px;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -85,22 +107,33 @@ export default {
   input {
     // padding: 2px;
     border-radius: 3px;
-    padding: 5px 0;
+    padding: 3px 0;
   }
 }
 
 .update-col {
   font-size: 1.5rem;
-  padding: 10px 50px;
+  padding: 5px 5px;
 }
 
 .submit-btn {
-  padding: 10px 20px;
+  padding: 5px 10px;
   border: none;
   border-radius: 5px;
   font-size: 1rem;
   background-color: #121212;
   cursor: pointer;
   color: white;
+}
+
+.home-btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #121212;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
 }
 </style>

@@ -1,11 +1,16 @@
 <template>
   <div class="remark-wrap">
-    <h5>備註 <router-link to="/UpdatePrice">:</router-link></h5>
+    <h5>
+      備註
+      <span @click="openUpdatePage">:</span>
+    </h5>
+    <!-- <router-link to="/UpdatePrice">:</router-link> -->
     <ul>
       <li v-for="text in remarkTextList">
         {{ text }}
       </li>
     </ul>
+    {{ counter }}
   </div>
 </template>
 
@@ -20,7 +25,17 @@ export default {
         '以上表格數據僅供參考，可在您得知當日回收金價後，在金價試算旁輸入金重後送出計算，即可得知本公司回收金額，其餘欄位不需異動。',
         '本公司是以_______________統一報價。',
       ],
+      counter: 0,
     };
+  },
+  methods: {
+    openUpdatePage() {
+      this.counter++;
+
+      if (this.counter == 3) {
+        this.$router.push({ path: 'UpdatePrice' });
+      }
+    },
   },
 };
 </script>

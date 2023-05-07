@@ -6,7 +6,7 @@
       <ul>
         <li>•實際兌換金額依現場實際檢驗後，現場實際秤重報價為主。</li>
         <li>•黃金回收價格每日更新，請依<span class="current-time">目前時間</span>為主，試算金額僅供當日參考。</li>
-        <li class="current-time">目前時間：2023/05/10 18:00 ....</li>
+        <li class="current-time">目前時間：{{ displayCurrentTime }}</li>
       </ul>
     </div>
   </div>
@@ -15,6 +15,29 @@
 <script>
 export default {
   name: 'HomeDescription',
+
+  data() {
+    return {
+      displayCurrentTime: '',
+    };
+  },
+
+  methods: {
+    getCurTime() {
+      let time = new Date();
+
+      let year = time.getFullYear();
+      let month = time.getMonth() + 1;
+      let date = time.getDate();
+      let hour = time.getHours();
+      let mins = time.getMinutes();
+      this.displayCurrentTime = year + '/' + month + '/' + date + '  ' + hour + ':' + mins;
+    },
+  },
+
+  created() {
+    this.getCurTime();
+  },
 };
 </script>
 
