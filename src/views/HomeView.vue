@@ -4,8 +4,8 @@
 
     <div class="main-content">
       <HomeDescription />
-      <CalculateTool goldUnitText="黃金條塊" :UsdtRate="usdtRate" :goldBasePrice="bullionPrice" />
-      <CalculateTool goldUnitText="飾金" :UsdtRate="usdtRate" :goldBasePrice="goldPrice" />
+      <CalculateTool goldUnit="bullion" :UsdtRate="usdtRate" :goldBasePrice="bullionPrice" />
+      <CalculateTool goldUnit="gold" :UsdtRate="usdtRate" :goldBasePrice="goldPrice" />
       <RemarkText />
     </div>
   </div>

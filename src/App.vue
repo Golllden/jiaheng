@@ -21,7 +21,8 @@
   vertical-align: baseline;
 }
 
-body {
+body,
+html {
   overflow-x: hidden;
 }
 

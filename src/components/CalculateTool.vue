@@ -14,28 +14,32 @@
           </select>
         </div>
         <div>
-          <input class="input-content" type="number" v-model="inputWeight" placeholder="請輸入重量" />
+          <input class="input-content" type="number" v-model="inputWeight" placeholder="重量" />
         </div>
+        <div class="remark-col"></div>
       </div>
       <!--  -->
       <div class="input-col">
         <div class="input-title">當日公告收價</div>
-        <div>
-          <input class="input-content" type="number" :value="displayPublicPriceByChoosenUnit" disabled />
+        <div class="display-content-warp">
+          <div class="display-content">{{ displayPublicPriceByChoosenUnit }}</div>
         </div>
+        <div class="remark-col"></div>
       </div>
       <div class="input-col">
-        <div class="input-title">飾金金額</div>
-        <div>
-          <input class="input-content" type="number" :value="calculatedAmount" disabled />
+        <div class="input-title">收購金額</div>
+        <div class="display-content-warp">
+          <div class="display-content">{{ calculatedAmount }}</div>
         </div>
+        <div class="remark-col memo-text">已計耗損</div>
       </div>
       <div class="input-col">
         <div class="input-title">USDT換算</div>
-        <div>
-          <input class="input-content" type="number" :value="calculatedUsdt" disabled />
-          <div class="usdt-rate">(匯率：{{ UsdtRate }})</div>
+        <div class="display-content-warp">
+          <div class="display-content">{{ calculatedUsdt }}</div>
         </div>
+        <div class="remark-col memo-text">匯率：{{ UsdtRate }}</div>
+        <!-- <div class="usdt-rate">(匯率：{{ UsdtRate }})</div> -->
       </div>
     </div>
     <hr />
@@ -50,7 +54,7 @@
 export default {
   name: 'CalculateTool',
   props: {
-    goldUnitText: String,
+    goldUnit: String,
     UsdtRate: Number,
     goldBasePrice: Number,
   },
@@ -76,6 +80,15 @@ export default {
       if (this.calculateUnit == 'kg') return ((this.goldBasePrice / 3.75) * 1000).toFixed(0);
       return this.goldBasePrice.toFixed(0);
     },
+
+    // 單位的文字
+    goldUnitText() {
+      if (this.goldUnit == 'gold') {
+        return '飾金';
+      }
+
+      return '黃金條塊';
+    },
   },
 
   methods: {
@@ -85,7 +98,11 @@ export default {
         return;
       }
 
-      this.calculatedAmount = this.displayPublicPriceByChoosenUnit * this.inputWeight;
+      // 飾金要另外再 *0.95
+      let calculateAnswer = this.displayPublicPriceByChoosenUnit * this.inputWeight;
+      this.calculatedAmount =
+        this.goldUnit == 'gold' ? (calculateAnswer * 0.95).toFixed(0) : calculateAnswer.toFixed(0);
+
       this.calculatedUsdt = (this.calculatedAmount / this.UsdtRate).toFixed(2);
 
       alert('完成');
@@ -119,30 +136,55 @@ export default {
   padding: 20px 2px;
   flex-direction: column;
   text-align: center;
+
+  position: relative;
 }
 
 .input-title {
   padding: 5px 0;
-  color: #9e7d56;
+  // color: #9e7d56;
+  color: #121212;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  height: 50%;
 }
 
 .input-content {
   font-weight: bold;
   width: 70%;
+  height: 30px;
   border-radius: 5px;
-  padding: 5px 1px;
-  color: #9e7d56;
-  border: 1px solid #9e7d56;
+  // color: #9e7d56;
+  color: #121212;
+
+  // border: 1px solid #9e7d56;
+  border: 1px solid #121212;
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 1.25rem;
 }
 
-.usdt-rate {
-  color: #9e7d56;
+.display-content-warp {
+  display: flex;
+  justify-content: center;
+}
+.display-content {
+  font-weight: bold;
+  width: 92%;
+  height: 20px;
+  border-radius: 5px;
+  padding: 5px 1px;
+  color: #121212;
+  border: 1px solid #121212;
+  // border: 1px solid #9e7d56;
+  text-align: center;
+  font-size: 1.25rem;
+  background-color: #fff;
+}
+
+.memo-text {
+  color: #121212;
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
 hr {
@@ -151,24 +193,26 @@ hr {
 }
 
 select {
-  border: #9e7d56 1px solid;
+  // border: #9e7d56 1px solid;
+  border: #121212 1px solid;
   border-radius: 5px;
   padding: 1px;
   font-weight: 600;
-  color: #9e7d56;
+  // color: #9e7d56;
+  color: #121212;
 }
 
 .submit-area {
   padding: 35px 10px;
-  font-size: 0.85rem;
+  font-size: 1.15rem;
   font-weight: 600;
-  color: #9e7d56;
+  color: #423d38;
 }
 
 .submit-btn {
   border: none;
-  font-size: 0.85rem;
-  padding: 6px 35px;
+  font-size: 1rem;
+  padding: 5px 35px;
   background-color: rgb(230, 60, 60);
   border-radius: 5px;
   color: rgb(240, 240, 240);
@@ -180,13 +224,10 @@ select {
   }
 }
 
-@media screen and (max-width: 550px) {
-  .input-title {
-    font-size: 0.75rem;
-  }
+.remark-col {
+  height: 50px;
+}
 
-  .input-content {
-    width: 80%;
-  }
+@media screen and (max-width: 550px) {
 }
 </style>
