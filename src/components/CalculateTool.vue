@@ -31,7 +31,7 @@
         <div class="display-content-warp">
           <div class="display-content">{{ calculatedAmount }}</div>
         </div>
-        <div class="remark-col memo-text">已計耗損</div>
+        <div class="remark-col memo-text"><span v-if="goldUnit == 'gold'">已計耗損5%</span></div>
       </div>
       <div class="input-col">
         <div class="input-title">USDT換算</div>
