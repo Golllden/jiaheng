@@ -106,6 +106,7 @@ export default {
 }
 
 .home-btn {
+  width: 200px;
   padding: 8px;
   border-radius: 5px;
   background-color: #9e7d56;
