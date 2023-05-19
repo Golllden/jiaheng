@@ -7,6 +7,9 @@
       <CalculateTool goldUnit="bullion" :UsdtRate="usdtRate" :goldBasePrice="bullionPrice" />
       <CalculateTool goldUnit="gold" :UsdtRate="usdtRate" :goldBasePrice="goldPrice" />
       <RemarkText />
+      <div class="btn-wrap">
+        <button class="home-btn" @click="goHome">返回首頁</button>
+      </div>
     </div>
   </div>
 </template>
@@ -64,6 +67,13 @@ export default {
         .then((response) => (this.bullionPrice = response.data.goldpriceB[0].goldpriceB))
         .catch((error) => console.log(error));
     },
+
+    // 返回首頁
+    goHome() {
+      console.log('home');
+      location.href = 'https://jh-gold.com';
+      // https://jh-gold.com/
+    },
   },
 
   created() {
@@ -88,6 +98,19 @@ export default {
   width: 100vw;
   padding: 50px 120px;
   background-color: #fff9f1;
+}
+
+.btn-wrap {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.home-btn {
+  padding: 8px;
+  border-radius: 5px;
+  background-color: #9e7d56;
+  color: white;
+  font-weight: bolder;
 }
 
 @media screen and (max-width: 1050px) {
