@@ -87,8 +87,8 @@ export default {
 <style lang="scss">
 .calculate-banner {
   width: 100vw;
-  height: 20vw;
-  background-image: url('../assets/banner.jpg');
+  height: 25vw;
+  background-image: url('../assets/banner.png');
   background-position: center;
   background-size: cover;
 }
