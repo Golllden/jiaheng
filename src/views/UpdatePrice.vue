@@ -83,10 +83,10 @@ export default {
 
       axios
         .post(revisePriceApi, {
-          usprice: this.newUsdtRate,
-          goldprice: this.newGoldPrice,
-          goldpriceB: this.newBullionPrice,
-          key: this.key,
+          usprice: this.newUsdtRate.toString(),
+          goldprice: this.newGoldPrice.toString(),
+          goldpriceB: this.newBullionPrice.toString(),
+          key: this.key.toString(),
         })
         .then((response) => {
           alert('OK');

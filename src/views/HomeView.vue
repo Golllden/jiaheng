@@ -112,6 +112,7 @@ export default {
   background-color: #9e7d56;
   color: white;
   font-weight: bolder;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1050px) {
